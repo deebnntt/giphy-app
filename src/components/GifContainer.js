@@ -6,20 +6,21 @@ import GifList from './GifList.js'
    constructor(props) {
    		super(props);
    		this.state = {
-   			gifs: [],
+   			trending: [],
    	 }
    }
 
    componentDidMount() {
      fetchTrendingGifs()
-      .then(json => this.setState({ gifs: json.data }))
+      .then(json => this.setState({ trending: json.data }))
    }
 
    render() {
 
      return (
        <div>
-          <GifList gifs={this.state.gifs}/>
+          <h2>Trending</h2>
+          <GifList gifs={this.state.trending}/>
        </div>
      )
    }

@@ -11,11 +11,11 @@ import GifCard from './GifCard.js'
    render() {
 
      const mappedGifs = this.props.gifs.map(g => {
-      return <GifCard key={g.id} title={g.title} url={g.images.downsized.url} />
+      return <GifCard className="card" key={g.id} title={g.title} url={g.images.downsized.url} />
     })
 
      return (
-       <div>
+       <div className="list">
           {mappedGifs}
        </div>
      )

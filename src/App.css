@@ -13,14 +13,41 @@
   font-size: 1.5em;
 }
 
+.gif-container {
+  width: 100%
+}
+
+div {
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
 .list {
-  width: 100%;
+  width: 80%;
+  margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 5px;
-  padding: 5px;
-  border-bottom: 1px solid black;
+  grid-gap: 30px;
 }
+
+.card {
+  padding: 10px;
+  border: 1px solid black;
+}
+
 
 img {
   max-width: 400px;

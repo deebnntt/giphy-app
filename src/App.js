@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Gif Searcher X-TREME</h1>
+          <h1 className="App-title">GIF FINDER X-TREME</h1>
         </header>
         <GifContainer />
       </div>

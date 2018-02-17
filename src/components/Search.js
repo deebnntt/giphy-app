@@ -11,7 +11,7 @@ import React from 'react'
 
      const mappedTerms = this.props.terms.map((t, index) => {
       let term = t
-      return <li onClick={this.props.handleClick} key={index} term={term}>{term}</li>
+      return <li className="li-links" onClick={this.props.handleClick} key={index} term={term}>{term}</li>
     })
 
      return (
@@ -20,9 +20,9 @@ import React from 'react'
            <input type="text" placeholder="Search Gifs" onChange={this.handleChange} className="search" onChange={this.props.handleSearchInput} />
            <input type="submit" className="search" />
          </form>
-         { this.props.terms.length > 0 ? <p>Searched Terms: </p> : null }
          <ul>
-             { mappedTerms }
+            { this.props.terms.length > 0 ? <li>Searched Terms: </li> : null }
+            { mappedTerms }
          </ul>
        </div>
      )

@@ -1,5 +1,90 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.gif-container {
+  width: 100%
+}
+
+a {
+  font-weight: 300;
+  text-decoration: underline;
+  -webkit-transition: color 1s ease-out;
+  -moz-transition: color 1s ease-out;
+  -o-transition: color 1s ease-out;
+  transition: color 1s ease-out;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #ff00ff;
+}
+
+a:visited {
+  color: #ff00ff;
+}
+
+div {
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+}
+
+.li-links {
+  font-size: 20px;
+  margin-left: 10px;
+  color: blue;
+  font-weight: 700;
+  text-decoration: underline;
+  -webkit-transition: color 1s ease-out;
+  -moz-transition: color 1s ease-out;
+  -o-transition: color 1s ease-out;
+  transition: color 1s ease-out;
+}
+
+.li-links:hover {
+  cursor: pointer;
+  color: #ff00ff;
+}
+
+.list {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.card {
+  padding: 10px;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  opacity: 1;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+img:hover {
+	opacity: .5;
+}
+
+.results-container {
+  background: pink;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
 }

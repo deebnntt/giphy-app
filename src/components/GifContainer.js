@@ -1,4 +1,5 @@
 import React from 'react'
+import ScrollableAnchor from 'react-scrollable-anchor'
 import { fetchTrendingGifs, fetchSearchedGifs } from '../helpers/api.js'
 import GifList from './GifList.js'
 import Search from './Search.js'
@@ -41,16 +42,22 @@ import Search from './Search.js'
     e.target.reset();
     }
 
+    // { this.state.searchTerms.length > 0 ? <a href='#trending-section'>trending gifs</a> : null }
+
    render() {
 
      return (
        <div>
           <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={this.state.searchTerms} currentSearchInput={this.state.currentSearchInput}/>
           <div className="gif-container">
-            { this.state.currentSearchTerm ? <h2>{this.state.currentSearchTerm}</h2> : null }
+            { this.state.currentSearchTerm ? <h1>{this.state.currentSearchTerm}</h1> : null }
             { this.state.currentSearchTerm ? <GifList gifs={this.state.results}/> : null }
-            <h2>Trending</h2>
-            <GifList gifs={this.state.trending}/>
+            <ScrollableAnchor id={'trending'}>
+              <div>
+                <h1>trending</h1>
+                <GifList gifs={this.state.trending}/>
+              </div>
+            </ScrollableAnchor>
           </div>
        </div>
      )

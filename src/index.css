@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Roboto Mono', monospace;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 .gif-container {
@@ -11,6 +11,7 @@ body {
 }
 
 a {
+  color: blue;
   font-weight: 300;
   text-decoration: underline;
   -webkit-transition: color 1s ease-out;
@@ -24,17 +25,14 @@ a:hover {
   color: #ff00ff;
 }
 
-a:visited {
-  color: #ff00ff;
-}
-
 div {
-  padding: 10px;
+  padding: 0;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
+  margin-top: 1em;
   padding: 0;
 }
 
@@ -43,8 +41,8 @@ li {
 }
 
 .li-links {
-  font-size: 20px;
-  margin-left: 10px;
+  font-size: 1em;
+  margin-left: .3em;
   color: blue;
   font-weight: 700;
   text-decoration: underline;
@@ -64,11 +62,11 @@ li {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 30px;
+  grid-gap: 1em;
 }
 
 .card {
-  padding: 10px;
+  padding: .2em;
 }
 
 img {
@@ -83,8 +81,25 @@ img:hover {
 	opacity: .5;
 }
 
-.results-container {
-  background: pink;
-  border-bottom: 1px solid black;
-  margin-bottom: 20px;
+@media only screen and (max-device-width : 500px) {
+  .list {
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  img {
+    max-width: 250px;
+  }
+
+  .card {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-device-width : 400px) {
+  img {
+    max-width: 200px;
+  }
 }

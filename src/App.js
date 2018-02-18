@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import styled, { keyframes } from 'styled-components';
+import { composeWithDevTools } from "redux-devtools-extension"
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import gifReducer from './reducers/gifReducer.js'
+import styled, { keyframes } from 'styled-components'
 import './App.css';
 import magnifying from './magnifying-glass.png'
 import GifContainer from './components/GifContainer.js';
+
+const store = createStore(gifReducer, composeWithDevTools(applyMiddleware(thunk)));
+
 
 const rotate360 = keyframes`
   from {
@@ -25,11 +33,13 @@ const Rotate = styled.div`
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1 className="App-title">GIF FINDER X-TREME</h1>
-        <Rotate><img className="magnifying" src={magnifying} alt=""/></Rotate>
-        <GifContainer />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <h1 className="App-title">GIF FINDER X-TREME</h1>
+          <Rotate><img className="magnifying" src={magnifying} alt=""/></Rotate>
+          <GifContainer />
+        </div>
+      </Provider>
     );
   }
 }

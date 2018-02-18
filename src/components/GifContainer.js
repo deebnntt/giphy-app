@@ -1,6 +1,7 @@
 import React from 'react'
 import ScrollableAnchor from 'react-scrollable-anchor'
-import { fetchTrendingGifs, fetchSearchedGifs } from '../helpers/api.js'
+import { connect } from 'react-redux'
+import { fetchTrending } from '../actions/gifs.js'
 import GifList from './GifList.js'
 import Search from './Search.js'
 
@@ -17,32 +18,29 @@ import Search from './Search.js'
    }
 
    componentDidMount() {
-     fetchTrendingGifs()
-      .then(json => this.setState({ trending: json.data }))
+     this.props.fetchTrending()
    }
 
-   handleClick = (e) => {
-     const searchTerm = e.target.innerHTML
-      this.setState({ currentSearchTerm: searchTerm })
-     fetchSearchedGifs(searchTerm)
-      .then(json => this.setState({ results: json.data }))
-   }
+   // handleClick = (e) => {
+   //   const searchTerm = e.target.innerHTML
+   //    this.setState({ currentSearchTerm: searchTerm })
+   //   fetchSearchedGifs(searchTerm)
+   //    .then(json => this.setState({ results: json.data }))
+   // }
 
    handleSearchInput = (e) => {
      this.setState({ currentSearchInput: e.target.value })
    }
 
-   handleSearch = (e) => {
-     e.preventDefault()
-     const searchTerm = this.state.currentSearchInput
-     const updatedTerms = [...this.state.searchTerms, searchTerm]
-     this.setState({ searchTerms: updatedTerms, currentSearchTerm: searchTerm,  currentSearchInput: "" })
-     fetchSearchedGifs(searchTerm)
-      .then(json => this.setState({ results: json.data }))
-    e.target.reset();
-    }
-
-    // { this.state.searchTerms.length > 0 ? <a href='#trending-section'>trending gifs</a> : null }
+   // handleSearch = (e) => {
+   //   e.preventDefault()
+   //   const searchTerm = this.state.currentSearchInput
+   //   const updatedTerms = [...this.state.searchTerms, searchTerm]
+   //   this.setState({ searchTerms: updatedTerms, currentSearchTerm: searchTerm,  currentSearchInput: "" })
+   //   fetchSearchedGifs(searchTerm)
+   //    .then(json => this.setState({ results: json.data }))
+   //  e.target.reset();
+   //  }
 
    render() {
 
@@ -64,5 +62,19 @@ import Search from './Search.js'
    }
  }
 
+ function mapStateToProps(state) {
+    return {
+      trending: state.trending,
+      results: state.results,
+    };
+  }
 
- export default GifContainer
+ function mapDispatchToProps(dispatch) {
+   return {
+     fetchTrending: () => {
+       dispatch(fetchTrending())
+     },
+   }
+ }
+
+ export default connect(mapStateToProps, mapDispatchToProps)(GifContainer)

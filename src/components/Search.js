@@ -42,7 +42,7 @@ const Button = styled.input`
      return (
        <div className="search-div">
          <form onSubmit={this.props.handleSearch}>
-           <Input type="text" placeholder="Search Gifs" onChange={this.handleChange} className="search" onChange={this.props.handleSearchInput} />
+           <Input type="text" placeholder="Search Gifs" className="search" onChange={this.props.handleSearchInput} />
            <Button type="submit" className="search" value="Search"/>
          </form>
          <ul>

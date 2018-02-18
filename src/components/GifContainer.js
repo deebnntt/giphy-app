@@ -33,7 +33,7 @@ import Search from './Search.js'
      this.props.addSearchTerm(searchTerm)
      this.props.setCurrentTerm(searchTerm)
      this.props.fetchSearched(searchTerm)
-     this.setState({ currentSearchTerm: searchTerm, currentSearchInput: "" })
+     this.setState({ currentSearchInput: "" })
      e.target.reset();
     }
 

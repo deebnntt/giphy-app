@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollableAnchor from 'react-scrollable-anchor'
 import { connect } from 'react-redux'
-import { fetchTrending, fetchSearched } from '../actions/gifs.js'
+import { fetchTrending, fetchSearched, setCurrentTerm, addSearchTerm } from '../actions/gifs.js'
 import GifList from './GifList.js'
 import Search from './Search.js'
 
@@ -9,9 +9,7 @@ import Search from './Search.js'
    constructor(props) {
    		super(props);
    		this.state = {
-        searchTerms: [],
         currentSearchInput: "",
-        currentSearchTerm: ""
    	 }
    }
 
@@ -21,7 +19,7 @@ import Search from './Search.js'
 
    handleClick = (e) => {
      const searchTerm = e.target.innerHTML
-     this.setState({ currentSearchTerm: searchTerm })
+     this.props.setCurrentTerm(searchTerm)
      this.props.fetchSearched(searchTerm)
    }
 
@@ -32,9 +30,10 @@ import Search from './Search.js'
    handleSearch = (e) => {
      e.preventDefault()
      const searchTerm = this.state.currentSearchInput
-     const updatedTerms = [...this.state.searchTerms, searchTerm]
-     this.setState({ searchTerms: updatedTerms, currentSearchTerm: searchTerm,  currentSearchInput: "" })
+     this.props.addSearchTerm(searchTerm)
+     this.props.setCurrentTerm(searchTerm)
      this.props.fetchSearched(searchTerm)
+     this.setState({ currentSearchTerm: searchTerm, currentSearchInput: "" })
      e.target.reset();
     }
 
@@ -42,9 +41,9 @@ import Search from './Search.js'
 
      return (
        <div>
-          <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={ this.state.searchTerms } currentSearchInput={this.state.currentSearchInput}/>
+          <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={ this.props.terms } currentSearchInput={this.state.currentSearchInput}/>
           <div className="gif-container">
-            { this.state.currentSearchTerm ? <h1>{this.state.currentSearchTerm}</h1> : null }
+            { this.props.currentTerm ? <h1>{this.props.currentTerm}</h1> : null }
             { this.props.results ? <GifList gifs={this.props.results}/> : null }
             <ScrollableAnchor id={'trending'}>
               <div>
@@ -62,6 +61,8 @@ import Search from './Search.js'
     return {
       trending: state.trending,
       results: state.results,
+      terms: state.terms,
+      currentTerm: state.currentTerm
     };
   }
 
@@ -72,6 +73,12 @@ import Search from './Search.js'
      },
      fetchSearched: (term) => {
        dispatch(fetchSearched(term))
+     },
+     addSearchTerm: (term) => {
+       dispatch(addSearchTerm(term))
+     },
+     setCurrentTerm: (term) => {
+       dispatch(setCurrentTerm(term))
      },
    }
  }

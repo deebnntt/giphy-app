@@ -20,9 +20,16 @@ export function fetchSearched(searchTerm) {
     }
   }
 
-  export function addSearchTerm(term) {
-    return{
-      type: "ADD_TERM",
-      payload: term
-    }
+export function setCurrentTerm(term) {
+  return{
+    type: "SET_TERM",
+    payload: term
   }
+}
+
+export function addSearchTerm(term) {
+  return{
+    type: "ADD_TERM",
+    payload: term
+  }
+}

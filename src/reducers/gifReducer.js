@@ -5,8 +5,8 @@ export default function gifReducer(
       const newState = {...state, trending: action.payload}
       return newState
     case "FETCH_TERM":
-      const poemState = {...state, results: action.payload}
-      return poemState
+      const updatedState = {...state, results: action.payload}
+      return updatedState
     default:
       return state
   }

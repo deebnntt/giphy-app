@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollableAnchor from 'react-scrollable-anchor'
 import { connect } from 'react-redux'
-import { fetchTrending } from '../actions/gifs.js'
+import { fetchTrending, fetchSearched } from '../actions/gifs.js'
 import GifList from './GifList.js'
 import Search from './Search.js'
 
@@ -9,8 +9,6 @@ import Search from './Search.js'
    constructor(props) {
    		super(props);
    		this.state = {
-   			trending: [],
-        results: [],
         searchTerms: [],
         currentSearchInput: "",
         currentSearchTerm: ""
@@ -21,26 +19,24 @@ import Search from './Search.js'
      this.props.fetchTrending()
    }
 
-   // handleClick = (e) => {
-   //   const searchTerm = e.target.innerHTML
-   //    this.setState({ currentSearchTerm: searchTerm })
-   //   fetchSearchedGifs(searchTerm)
-   //    .then(json => this.setState({ results: json.data }))
-   // }
+   handleClick = (e) => {
+     const searchTerm = e.target.innerHTML
+     this.setState({ currentSearchTerm: searchTerm })
+     this.props.fetchSearched(searchTerm)
+   }
 
    handleSearchInput = (e) => {
      this.setState({ currentSearchInput: e.target.value })
    }
 
-   // handleSearch = (e) => {
-   //   e.preventDefault()
-   //   const searchTerm = this.state.currentSearchInput
-   //   const updatedTerms = [...this.state.searchTerms, searchTerm]
-   //   this.setState({ searchTerms: updatedTerms, currentSearchTerm: searchTerm,  currentSearchInput: "" })
-   //   fetchSearchedGifs(searchTerm)
-   //    .then(json => this.setState({ results: json.data }))
-   //  e.target.reset();
-   //  }
+   handleSearch = (e) => {
+     e.preventDefault()
+     const searchTerm = this.state.currentSearchInput
+     const updatedTerms = [...this.state.searchTerms, searchTerm]
+     this.setState({ searchTerms: updatedTerms, currentSearchTerm: searchTerm,  currentSearchInput: "" })
+     this.props.fetchSearched(searchTerm)
+     e.target.reset();
+    }
 
    render() {
 
@@ -49,7 +45,7 @@ import Search from './Search.js'
           <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={this.state.searchTerms} currentSearchInput={this.state.currentSearchInput}/>
           <div className="gif-container">
             { this.state.currentSearchTerm ? <h1>{this.state.currentSearchTerm}</h1> : null }
-            { this.state.currentSearchTerm ? <GifList gifs={this.state.results}/> : null }
+            { this.props.results ? <GifList gifs={this.props.results}/> : null }
             <ScrollableAnchor id={'trending'}>
               <div>
                 <h1>trending</h1>
@@ -64,7 +60,7 @@ import Search from './Search.js'
 
  function mapStateToProps(state) {
     return {
-      trending: state.trending.data,
+      trending: state.trending,
       results: state.results,
     };
   }
@@ -73,6 +69,9 @@ import Search from './Search.js'
    return {
      fetchTrending: () => {
        dispatch(fetchTrending())
+     },
+     fetchSearched: (term) => {
+       dispatch(fetchSearched(term))
      },
    }
  }

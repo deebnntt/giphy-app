@@ -5,8 +5,7 @@ export function fetchTrending() {
     fetchTrendingGifs()
       .then(json => {
         dispatch({type: "FETCH_TRENDING",
-        payload: json
-      })
+        payload: json.data })
     })
   }
 }
@@ -20,10 +19,10 @@ export function fetchSearched(searchTerm) {
     fetchSearchedGifs(searchTerm)
       .then(json => {
         dispatch({type: "FETCH_TERM",
-        payload: { searchTerm: json }})
+        payload: json.data })
       })
+    }
   }
-}
 
 export function fetchingSearchTerm() {
   return { type: "FETCHING_TERM" };

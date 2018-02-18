@@ -53,7 +53,7 @@ import Search from './Search.js'
             <ScrollableAnchor id={'trending'}>
               <div>
                 <h1>trending</h1>
-                <GifList gifs={this.state.trending}/>
+                { this.props.trending ? <GifList gifs={this.props.trending}/> : null }
               </div>
             </ScrollableAnchor>
           </div>
@@ -64,7 +64,7 @@ import Search from './Search.js'
 
  function mapStateToProps(state) {
     return {
-      trending: state.trending,
+      trending: state.trending.data,
       results: state.results,
     };
   }

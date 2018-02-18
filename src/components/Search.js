@@ -19,6 +19,10 @@ const Button = styled.input`
   border: 2px solid blue;
   font-size: 1em;
   font-family: 'Roboto Mono', monospace;
+  &:hover {
+    cursor: pointer;
+    color: #ff00ff;
+  }
 `;
 
  class Search extends React.Component {
@@ -39,7 +43,7 @@ const Button = styled.input`
        <div className="search-div">
          <form onSubmit={this.props.handleSearch}>
            <Input type="text" placeholder="Search Gifs" onChange={this.handleChange} className="search" onChange={this.props.handleSearchInput} />
-           <Button type="submit" className="search" />
+           <Button type="submit" className="search" value="Search"/>
          </form>
          <ul>
             { this.props.terms.length > 0 ? <li>recent searches: </li> : null }

@@ -1,12 +1,13 @@
 export default function gifReducer(
-  state = {trending: [], results: []}, action) {
+  state = {trending: [], results: [], terms: []}, action) {
   switch (action.type) {
     case "FETCH_TRENDING":
-      const newState = {...state, trending: action.payload}
-      return newState
+      return {...state, trending: action.payload}
     case "FETCH_TERM":
-      const updatedState = {...state, results: action.payload}
-      return updatedState
+      return {...state, results: action.payload}
+    case "ADD_TERM":
+      const newTerms = state.terms.push(action.payload)
+      return {...state, terms: newTerms}
     default:
       return state
   }

@@ -42,7 +42,7 @@ import Search from './Search.js'
 
      return (
        <div>
-          <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={this.state.searchTerms} currentSearchInput={this.state.currentSearchInput}/>
+          <Search handleSearch={this.handleSearch} handleClick={this.handleClick} handleSearchInput={this.handleSearchInput} terms={ this.state.searchTerms } currentSearchInput={this.state.currentSearchInput}/>
           <div className="gif-container">
             { this.state.currentSearchTerm ? <h1>{this.state.currentSearchTerm}</h1> : null }
             { this.props.results ? <GifList gifs={this.props.results}/> : null }

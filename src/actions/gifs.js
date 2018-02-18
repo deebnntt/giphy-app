@@ -10,10 +10,6 @@ export function fetchTrending() {
   }
 }
 
-export function fetchingTrending() {
-  return { type: "FETCHING_TRENDING" };
-}
-
 export function fetchSearched(searchTerm) {
   return function(dispatch) {
     fetchSearchedGifs(searchTerm)
@@ -24,6 +20,9 @@ export function fetchSearched(searchTerm) {
     }
   }
 
-export function fetchingSearchTerm() {
-  return { type: "FETCHING_TERM" };
-}
+  export function addSearchTerm(term) {
+    return{
+      type: "ADD_TERM",
+      payload: term
+    }
+  }

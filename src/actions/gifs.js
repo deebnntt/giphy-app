@@ -1,8 +1,8 @@
-import { fetchTrendingGifs, fetchSearchedGifs } from "../helpers/api.js";
+import Api from '../helpers/api.js'
 
 export function fetchTrending() {
   return function(dispatch) {
-    fetchTrendingGifs()
+    Api.fetchTrendingGifs()
       .then(json => {
         dispatch({type: "FETCH_TRENDING",
         payload: json.data })
@@ -12,7 +12,7 @@ export function fetchTrending() {
 
 export function fetchSearched(searchTerm) {
   return function(dispatch) {
-    fetchSearchedGifs(searchTerm)
+    Api.fetchSearchedGifs(searchTerm)
       .then(json => {
         dispatch({type: "FETCH_TERM",
         payload: json.data })

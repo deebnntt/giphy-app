@@ -11,3 +11,5 @@ Built with React, Redux, styled-components, React Scrollable Anchor, and, of cou
 3.  Run 'npm install'
 4.  Run 'npm start'.  The app will run on http://localhost:3000/ by default
 5.  Find some cool new gifs!
+
+![](https://media.giphy.com/media/fQoCOrOT9PxQGE392o/giphy.gif)
